@@ -11,7 +11,7 @@ function App() {
 
   const submit = async () => {
     try {
-      const req = await axios.post("http://localhost:80/javascript", {
+      const req = await axios.post("http://localhost:8080/javascript", {
         code: code,
       });
       const res = req.data;
