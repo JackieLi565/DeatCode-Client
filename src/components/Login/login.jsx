@@ -1,11 +1,17 @@
+import axios from "axios";
 import { useState } from "react";
 
 function Login() {
-  const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const submit = () => {
-    console.log("form submite");
+  const submit = async () => {
+    const req = await axios.post("/api/login", {
+      username,
+      password,
+    });
+    const res = req.data;
+    console.log(res);
   };
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -17,21 +23,18 @@ function Login() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6">
+        <div className="space-y-6">
           <div>
             <label
               htmlFor="email"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              Email address
+              username
             </label>
             <div className="mt-2">
               <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-3"
               />
             </div>
@@ -56,11 +59,8 @@ function Login() {
             </div>
             <div className="mt-2">
               <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-3"
               />
             </div>
@@ -74,7 +74,7 @@ function Login() {
               Sign in
             </button>
           </div>
-        </form>
+        </div>
 
         <p className="mt-10 text-center text-sm text-gray-500">
           Not a member? &nbsp;
