@@ -7,8 +7,9 @@ const bp = "function Sum(a, b) {}";
 function App() {
   return (
     <div>
-      <Navbar />
-      <ProblemPage />
+      {/* <Navbar />
+      <ProblemPage /> */}
+      <LoginPage />
     </div>
   );
 }
