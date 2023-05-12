@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CodeBox from "../components/CodeBox";
 import Sider from "../components/Sider";
-
+import Navbar from "../components/Navbar/index";
 function ProblemPage() {
   const [result, setResult] = useState("");
   const [userStatus, setUserStatus] = useState(); // true if done a problem already
@@ -34,10 +34,13 @@ function ProblemPage() {
   };
 
   return (
-    <div className="flex h-screen pt-20">
-      <Sider />
-      <CodeBox submit={submit} />
-    </div>
+    <>
+      <Navbar />
+      <div className="flex h-screen pt-16">
+        <Sider />
+        <CodeBox submit={submit} />
+      </div>
+    </>
   );
 }
 export default ProblemPage;

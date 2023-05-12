@@ -13,7 +13,7 @@ function LoginPage() {
 
   return (
     <main className="grid grid-cols-1 lg:grid-cols-2 h-screen">
-      <section className="lg:col-span-1 flex bg-gray-700 min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      <section className="lg:col-span-1 flex bg-background min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         {isRegister ? (
           <Register handleRegister={handleRegister} />
         ) : (
