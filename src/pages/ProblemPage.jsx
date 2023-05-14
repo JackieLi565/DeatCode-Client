@@ -3,13 +3,18 @@ import axios from "axios";
 import CodeBox from "../components/CodeBox";
 import Sider from "../components/Sider";
 import Navbar from "../components/Navbar/index";
+import { useQuery } from "react-query";
 function ProblemPage() {
   const [result, setResult] = useState("");
   const [userStatus, setUserStatus] = useState(); // true if done a problem already
   const [time, setTime] = useState("5:10:20");
 
-  useEffect(() => {
-    // send ajax to check if the user has done a problem
+  const { isLoading, data } = useQuery({
+    queryKey: ["codeData"],
+    queryFn: async () => {
+      const req = await axios.get("/api/problem/base");
+      return req.data;
+    },
   });
 
   if (userStatus) {
@@ -23,8 +28,8 @@ function ProblemPage() {
 
   const submit = async (code) => {
     try {
-      const req = await axios.post("http://localhost:8080/javascript", {
-        code: code,
+      const req = await axios.post("/api/", {
+        code,
       });
       const res = req.data;
       console.log(res);

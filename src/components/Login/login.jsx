@@ -6,12 +6,18 @@ function Login({ handleRegister }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [error, setError] = useState(false);
   const submit = async () => {
     const req = await axios.post("/api/auth/login", {
       email,
       password,
     });
+
+    if (!req.data.redirectURL) {
+      setError(true);
+      return;
+    }
+
     navigate(req.data.redirectURL);
   };
 
@@ -51,12 +57,12 @@ function Login({ handleRegister }) {
                 Password
               </label>
               <div className="text-sm">
-                <a
-                  href="#"
+                <button
+                  onClick={() => navigate("/Reset")}
                   className="font-semibold text-paragraph hover:text-third"
                 >
-                  Forgot password?
-                </a>
+                  Forgot your password?
+                </button>
               </div>
             </div>
             <div className="mt-2">
@@ -66,6 +72,13 @@ function Login({ handleRegister }) {
                 className="block w-full rounded-md border-0 py-1.5 text-black outline-none sm:text-sm sm:leading-6 p-3"
               />
             </div>
+            {error ? (
+              <p className="text-error flex justify-center pt-2">
+                Password or Email is inccorect
+              </p>
+            ) : (
+              <p></p>
+            )}
           </div>
 
           <div>

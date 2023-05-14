@@ -11,6 +11,7 @@ export default {
       button: "#ff8906",
       secondary: "#f25f4c",
       third: "#e53170",
+      error: "#D70040",
     },
   },
   plugins: [],

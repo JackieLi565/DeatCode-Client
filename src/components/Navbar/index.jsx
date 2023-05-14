@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 function Navbar() {
-  const logout = () => {
-    // make logout request to backend
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    const req = await axios.get("/api/auth/logout");
+    navigate(req.data.redirectURL);
   };
   return (
     <>
       <nav className="w-full bg-background fixed px-4 py-4 flex justify-between items-center">
-        <h1 className="font-bold text-4xl text-headline">DeatCode</h1>
+        <Link className="font-bold text-4xl text-headline" to="/Home">
+          DeatCode
+        </Link>
         <div className="space-x-6 text-headline">
           <Link
             className="bg-button px-4 py-2 rounded hover:bg-opacity-80 transition duration-300"
