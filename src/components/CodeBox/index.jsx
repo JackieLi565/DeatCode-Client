@@ -3,27 +3,23 @@ import { javascript } from "@codemirror/lang-javascript";
 import { sublime } from "@uiw/codemirror-theme-sublime";
 import { useState } from "react";
 
-const bpCode = `/*
-Lorem Ipsum is simply dummy text of the printing and 
-typesetting industry. Lorem Ipsum has been the industry's 
-standard dummy text ever since the 1500s, when an unknown 
-printer took a galley of type and scrambled it to make a 
-type specimen book. It has survived not only five centuries, 
-but also the leap into electronic typesetting, remaining 
-essentially unchanged. It was popularised in the 1960s with 
-the release of Letraset sheets containing Lorem Ipsum passages, 
-and more recently with desktop publishing software like Aldus 
-PageMaker including versions of Lorem Ipsum.
+function CodeBox({ submit, data }) {
+  const [code, setCode] = useState(`/*
+  Lorem Ipsum is simply dummy text of the printing and 
+  typesetting industry. Lorem Ipsum has been the industry's 
+  standard dummy text ever since the 1500s, when an unknown 
+  printer took a galley of type and scrambled it to make a 
+  type specimen book. It has survived not only five centuries, 
+  but also the leap into electronic typesetting, remaining 
+  essentially unchanged. It was popularised in the 1960s with 
+  the release of Letraset sheets containing Lorem Ipsum passages, 
+  and more recently with desktop publishing software like Aldus 
+  PageMaker including versions of Lorem Ipsum.
 */ 
-
-function WelcomeToDeatCode(param1: string, param2:string {
-
-});
-
-`;
-
-function CodeBox(props) {
-  const [code, setCode] = useState(bpCode);
+  
+${data.bpCode}
+  
+  `);
 
   return (
     <section className="w-3/5 p-3 bg-background ">
@@ -31,13 +27,13 @@ function CodeBox(props) {
         <div className="space-x-4">
           <button
             className="mb-4 bg-button text-headline px-6 py-1 rounded text-xl"
-            onClick={() => props.submit(code)}
+            onClick={() => submit(code)}
           >
             Submit
           </button>
           <button
             className="mb-4 bg-button text-headline px-6 py-1 rounded text-xl"
-            onClick={() => props.submit(code)}
+            onClick={() => submit(code)}
           >
             Test
           </button>
@@ -47,7 +43,7 @@ function CodeBox(props) {
           <CodeMirror
             value={code}
             theme={sublime}
-            extensions={[javascript({ jsx: true })]}
+            extensions={[javascript()]}
             onChange={(value) => {
               setCode(value);
               console.log(code);

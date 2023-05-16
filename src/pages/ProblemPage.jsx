@@ -4,11 +4,10 @@ import CodeBox from "../components/CodeBox";
 import Sider from "../components/Sider";
 import Navbar from "../components/Navbar/index";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 function ProblemPage() {
   const [result, setResult] = useState("");
-  const [userStatus, setUserStatus] = useState(); // true if done a problem already
-  const [time, setTime] = useState("5:10:20");
-
+  const navigate = useNavigate();
   const { isLoading, data } = useQuery({
     queryKey: ["codeData"],
     queryFn: async () => {
@@ -17,13 +16,8 @@ function ProblemPage() {
     },
   });
 
-  if (userStatus) {
-    return (
-      <>
-        You have done a problem already please wait until tmrw{" "}
-        <div>Next avaliable problem: {time}</div>
-      </>
-    );
+  if (isLoading) {
+    return <>Loading Problem</>;
   }
 
   const submit = async (code) => {
@@ -42,8 +36,8 @@ function ProblemPage() {
     <>
       <Navbar />
       <div className="flex h-screen pt-16">
-        <Sider />
-        <CodeBox submit={submit} />
+        <Sider data={data} />
+        <CodeBox submit={submit} data={data} />
       </div>
     </>
   );

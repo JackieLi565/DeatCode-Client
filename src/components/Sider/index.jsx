@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react";
 import Example from "../Example";
 
-function Sider() {
-  const [question, setQuestion] = useState("The Question Of the Day");
-  useEffect(() => {
-    //TODO: Fetch challange data
-  });
+function Sider({ data }) {
   return (
     <section className="w-2/5 p-3 bg-background space-y-3">
       <main className="bg-backgroundS p-3 rounded h-full">
-        <h1 className="text-2xl text-headline">{question}</h1>
-        <p className="text-paragraph">
-          Given two numbers create a function in Python that returns the sum of
-          the two numbers
-        </p>
-        <Example input="p1: 2 , p2: 3" output="5" explanation="2 + 3 = 5" />
-        <Example input="p1: 2 , p2: 1" output="3" explanation="2 + 1 = 3" />
-        <Example input="p1: 2 , p2: 4" output="56" explanation="2 + 4 = 6" />
+        <h1 className="text-2xl text-headline">
+          The Question Of the Day: {data?.name}
+        </h1>
+        <p className="text-paragraph">{data?.desc}</p>
+        {data.ex?.map((example, index) => (
+          <Example example={example} key={index} />
+        ))}
       </main>
     </section>
   );

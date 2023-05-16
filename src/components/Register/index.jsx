@@ -1,12 +1,22 @@
 import { useState } from "react";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function Register({ handleRegister }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
-  const createUser = () => {
-    console.log("create user");
+  const createUser = async () => {
+    try {
+      const req = await axios.post("/api/auth/register", {
+        email,
+        username,
+        password,
+      });
+      navigate(req.data.redirectURL);
+    } catch {}
   };
   return (
     <>
@@ -68,6 +78,13 @@ function Register({ handleRegister }) {
                 className="block w-full rounded-md border-0 py-1.5 text-black outline-none sm:text-sm sm:leading-6 p-3"
               />
             </div>
+            {error ? (
+              <p className="text-error flex justify-center pt-2">
+                Password or Email is inccorect
+              </p>
+            ) : (
+              <p></p>
+            )}
           </div>
 
           <div>
