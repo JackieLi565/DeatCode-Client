@@ -2,7 +2,7 @@ import Example from "../Example";
 
 function Sider({ data }) {
   return (
-    <section className="w-2/5 p-3 bg-background space-y-3">
+    <section className="col-span-4  p-3 bg-background space-y-3">
       <main className="bg-backgroundS p-3 rounded h-full">
         <h1 className="text-2xl text-headline">
           The Question Of the Day: {data?.name}

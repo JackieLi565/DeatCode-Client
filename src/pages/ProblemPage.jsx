@@ -35,7 +35,7 @@ function ProblemPage() {
   return (
     <>
       <Navbar />
-      <div className="flex h-screen pt-16">
+      <div className="grid grid-cols-10 h-screen pt-16">
         <Sider data={data} />
         <CodeBox submit={submit} data={data} />
       </div>

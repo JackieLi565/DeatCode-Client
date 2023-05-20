@@ -22,8 +22,8 @@ ${data.bpCode}
   `);
 
   return (
-    <section className="w-3/5 p-3 bg-background ">
-      <main className="p-3 bg-backgroundS rounded h-full relative">
+    <section className="col-span-6  p-3 bg-background ">
+      <main className="p-3 bg-backgroundS rounded relative">
         <div className="space-x-4">
           <button
             className="mb-4 bg-button text-headline px-6 py-1 rounded text-xl"
@@ -38,23 +38,24 @@ ${data.bpCode}
             Test
           </button>
         </div>
+        <div className="grid grid-rows-3">
+          <div class="h-[535px] overflow-y-auto row-span-2">
+            <CodeMirror
+              value={code}
+              theme={sublime}
+              extensions={[javascript()]}
+              onChange={(value) => {
+                setCode(value);
+                console.log(code);
+              }}
+              className="w-full overflow"
+            />
+          </div>
 
-        <div class="max-h-[600px] overflow-y-auto">
-          <CodeMirror
-            value={code}
-            theme={sublime}
-            extensions={[javascript()]}
-            onChange={(value) => {
-              setCode(value);
-              console.log(code);
-            }}
-            className="w-full overflow"
-          />
-        </div>
-
-        <div className="bg-background p-2 mt-6 rounded h-1/5 w-full bottom-4 ">
-          <h1 className="text-headline">Console: </h1>
-          <div className="text-paragraph"> sample code fdjklsdfjslak</div>
+          <div className="bg-background p-2 mt-6 rounded w-full bottom-4 row-span-1">
+            <h1 className="text-headline">Console: </h1>
+            <div className="text-paragraph"> sample code fdjklsdfjslak</div>
+          </div>
         </div>
       </main>
     </section>
