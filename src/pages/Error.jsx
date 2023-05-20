@@ -1,6 +1,8 @@
 // temp error page
-function Error() {
-  return <section className="h-screen pt-16 bg-background">Error ...</section>;
+function Error({ msg }) {
+  return (
+    <section className="h-screen pt-16 bg-background">{`<Error>: ${msg}`}</section>
+  );
 }
 
 export default Error;

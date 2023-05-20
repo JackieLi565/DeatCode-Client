@@ -6,10 +6,10 @@ import Navbar from "../components/Navbar/index";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
+import Error from "./Error";
 
 function ProblemPage() {
   const [result, setResult] = useState("");
-  const navigate = useNavigate();
   const { isLoading, data, isError, error } = useQuery({
     queryKey: ["codeData"],
     queryFn: async () => {
@@ -19,7 +19,7 @@ function ProblemPage() {
   });
 
   if (isError) {
-    return <h1>{error.message}</h1>;
+    return <Error msg={error.message} />;
   }
   if (isLoading) {
     return <Loading />;

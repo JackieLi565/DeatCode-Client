@@ -46,7 +46,6 @@ ${data.bpCode}
               extensions={[javascript()]}
               onChange={(value) => {
                 setCode(value);
-                console.log(code);
               }}
               className="w-full overflow"
             />
