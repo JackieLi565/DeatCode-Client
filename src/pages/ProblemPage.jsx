@@ -5,6 +5,7 @@ import Sider from "../components/Sider";
 import Navbar from "../components/Navbar/index";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 function ProblemPage() {
   const [result, setResult] = useState("");
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function ProblemPage() {
   });
 
   if (isLoading) {
-    return <>Loading Problem</>;
+    return <Loading />;
   }
 
   const submit = async (code) => {
