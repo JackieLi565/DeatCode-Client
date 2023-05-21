@@ -27,13 +27,14 @@ function ProblemPage() {
 
   const submit = async (code) => {
     try {
-      const req = await axios.post("/api/", {
+      console.log(code);
+      await axios.post("/api/python", {
         code,
+        problem: data.name,
+        priblemID: data._id,
       });
-      const res = req.data;
-      console.log(res);
-    } catch {
-      console.log("Server Error");
+    } catch (e) {
+      console.log("Server Error", e);
     }
   };
 

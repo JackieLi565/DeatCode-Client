@@ -16,7 +16,9 @@ function Register({ handleRegister }) {
         password,
       });
       navigate(req.data.redirectURL);
-    } catch {}
+    } catch {
+      setError(true);
+    }
   };
   return (
     <>
@@ -80,7 +82,7 @@ function Register({ handleRegister }) {
             </div>
             {error ? (
               <p className="text-error flex justify-center pt-2">
-                Password or Email is inccorect
+                This user already exists
               </p>
             ) : (
               <p></p>

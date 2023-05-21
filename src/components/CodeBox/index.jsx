@@ -31,12 +31,6 @@ ${data.bpCode}
           >
             Submit
           </button>
-          <button
-            className="mb-4 bg-button text-headline px-6 py-1 rounded text-xl"
-            onClick={() => submit(code)}
-          >
-            Test
-          </button>
         </div>
         <div className="grid grid-rows-3">
           <div class="h-[535px] overflow-y-auto row-span-2">
