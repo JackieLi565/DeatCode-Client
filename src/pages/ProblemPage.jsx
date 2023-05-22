@@ -4,12 +4,12 @@ import CodeBox from "../components/CodeBox";
 import Sider from "../components/Sider";
 import Navbar from "../components/Navbar/index";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 import Error from "./Error";
+import Sucess from "../components/Sucess";
 
 function ProblemPage() {
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(false);
   const { isLoading, data, isError, error } = useQuery({
     queryKey: ["codeData"],
     queryFn: async () => {
@@ -33,8 +33,10 @@ function ProblemPage() {
         problem: data.name,
         priblemID: data._id,
       });
+      setResult(true);
     } catch (e) {
       console.log("Server Error", e);
+      // notify console for inccorect soltiuon
     }
   };
 
@@ -42,8 +44,14 @@ function ProblemPage() {
     <>
       <Navbar />
       <div className="grid grid-cols-10 h-screen pt-16">
-        <Sider data={data} />
-        <CodeBox submit={submit} data={data} />
+        {result ? (
+          <Sucess />
+        ) : (
+          <>
+            <Sider data={data} />
+            <CodeBox submit={submit} data={data} />
+          </>
+        )}
       </div>
     </>
   );
