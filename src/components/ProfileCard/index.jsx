@@ -1,12 +1,9 @@
 import axios from "axios";
 import ProblemCard from "../ProblemCard";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
-import Error from "../../pages/Error";
+import Error from "../Error/index";
 import Loading from "../../pages/Loading";
 function ProfileCard() {
-  const navigate = useNavigate();
-
   const { isLoading, data, isError, error } = useQuery({
     queryKey: ["profileData"],
     queryFn: async () => {

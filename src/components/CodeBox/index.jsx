@@ -3,8 +3,8 @@ import { javascript } from "@codemirror/lang-javascript";
 import { sublime } from "@uiw/codemirror-theme-sublime";
 import { useState } from "react";
 
-function CodeBox({ submit, data }) {
-  const [code, setCode] = useState(`/*
+function CodeBox({ submit, data, console }) {
+  const [code, setCode] = useState(`"""
   Lorem Ipsum is simply dummy text of the printing and 
   typesetting industry. Lorem Ipsum has been the industry's 
   standard dummy text ever since the 1500s, when an unknown 
@@ -15,7 +15,7 @@ function CodeBox({ submit, data }) {
   the release of Letraset sheets containing Lorem Ipsum passages, 
   and more recently with desktop publishing software like Aldus 
   PageMaker including versions of Lorem Ipsum.
-*/ 
+""" 
   
 ${data.bpCode}
   
@@ -45,9 +45,13 @@ ${data.bpCode}
             />
           </div>
 
-          <div className="bg-background p-2 mt-6 rounded w-full bottom-4 row-span-1">
+          <div className="bg-background overflow-y-auto h-[243px] p-2 mt-6 rounded w-full bottom-4 row-span-1 ">
             <h1 className="text-headline">Console: </h1>
-            <div className="text-paragraph"> sample code fdjklsdfjslak</div>
+            {console.map((msg, index) => (
+              <p key={index} className="text-paragraph pt-2">
+                {msg}
+              </p>
+            ))}
           </div>
         </div>
       </main>

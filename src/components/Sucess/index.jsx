@@ -1,6 +1,6 @@
 function Sucess() {
   return (
-    <div className="col-span-10 bg-background">
+    <div className="col-span-10 bg-background p-3">
       You completed the problem YAHHHHHH
     </div>
   );
