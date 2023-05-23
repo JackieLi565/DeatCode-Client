@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import ProblemPage from "./pages/ProblemPage";
 import ProfilePage from "./pages/ProfilePage";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Error from "./pages/Error";
 const queryClient = new QueryClient();
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/Home" element={<ProblemPage />} />
         <Route path="/Profile" element={<ProfilePage />} />
+        <Route path="/Completed" element={<Error />} />
       </Routes>
     </QueryClientProvider>
   );

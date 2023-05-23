@@ -7,9 +7,11 @@ import { useQuery } from "react-query";
 import Loading from "./Loading";
 import Error from "../components/Error";
 import Sucess from "../components/Sucess";
+import { useNavigate } from "react-router-dom";
 
 function ProblemPage() {
   const [result, setResult] = useState(false);
+  const navigate = useNavigate();
   const [consoleData, setConsole] = useState(["Connected to Server"]);
   const { isLoading, data, isError, error } = useQuery({
     queryKey: ["codeData"],
@@ -20,7 +22,7 @@ function ProblemPage() {
   });
 
   if (isError) {
-    return <Error msg={error.message} />;
+    navigate("/Completed");
   }
   if (isLoading) {
     return <Loading />;
