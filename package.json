@@ -15,8 +15,10 @@
     "@uiw/codemirror-theme-sublime": "^4.19.16",
     "@uiw/react-codemirror": "^4.19.16",
     "axios": "^1.4.0",
+    "framer-motion": "^10.12.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^5.3.4",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.11.1"
   },
