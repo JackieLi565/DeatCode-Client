@@ -4,9 +4,8 @@ import CodeBox from "../components/CodeBox";
 import Sider from "../components/Sider";
 import Navbar from "../components/Navbar/index";
 import { useQuery } from "react-query";
-import Loading from "./Loading";
-import Error from "../components/Error";
-import Sucess from "../components/Sucess";
+import Loading from "../components/Status/Loading";
+import Success from "../components/Status/Success";
 import { useNavigate } from "react-router-dom";
 
 function ProblemPage() {
@@ -47,7 +46,7 @@ function ProblemPage() {
       <Navbar />
       <div className="grid grid-cols-10 h-screen pt-16">
         {result ? (
-          <Sucess />
+          <Success />
         ) : (
           <>
             <Sider data={data} />

@@ -1,8 +1,8 @@
 import axios from "axios";
 import ProblemCard from "../ProblemCard";
 import { useQuery } from "react-query";
-import Error from "../Error/index";
-import Loading from "../../pages/Loading";
+import Loading from "../Status/Loading";
+import { useNavigate } from "react-router-dom";
 function ProfileCard() {
   const { isLoading, data, isError, error } = useQuery({
     queryKey: ["profileData"],
@@ -14,7 +14,7 @@ function ProfileCard() {
   });
 
   if (isError) {
-    return <Error msg={error.message} />;
+    useNavigate("/401");
   }
 
   if (isLoading) {

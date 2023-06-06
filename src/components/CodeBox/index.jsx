@@ -2,7 +2,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { sublime } from "@uiw/codemirror-theme-sublime";
 import { useState } from "react";
-
+import { motion } from "framer-motion";
 function CodeBox({ submit, data, console }) {
   const [code, setCode] = useState(`"""
   Lorem Ipsum is simply dummy text of the printing and 
@@ -23,7 +23,13 @@ ${data.bpCode}
 
   return (
     <section className="col-span-6  p-3 bg-background ">
-      <main className="p-3 bg-backgroundS rounded relative">
+      <motion.main
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 10 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="p-3 bg-backgroundS rounded relative"
+      >
         <div className="space-x-4">
           <button
             className="mb-4 bg-button text-headline px-6 py-1 rounded text-xl"
@@ -54,7 +60,7 @@ ${data.bpCode}
             ))}
           </div>
         </div>
-      </main>
+      </motion.main>
     </section>
   );
 }
