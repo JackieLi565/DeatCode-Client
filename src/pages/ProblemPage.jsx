@@ -12,12 +12,13 @@ function ProblemPage() {
   const [result, setResult] = useState(false);
   const navigate = useNavigate();
   const [consoleData, setConsole] = useState(["Connected to Server"]);
-  const { isLoading, data, isError, error } = useQuery({
-    queryKey: ["codeData"],
+  const { isLoading, data, isError } = useQuery({
+    queryKey: "problem",
     queryFn: async () => {
       const req = await axios.get("/api/problem/base");
       return req.data;
     },
+    retry: 1,
   });
 
   if (isError) {

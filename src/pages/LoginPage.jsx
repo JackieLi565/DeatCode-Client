@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Login from "../components/Login/login";
+import Login from "../components/Login";
 import Register from "../components/Register";
 
 function LoginPage() {
-  const [isRegister, setIsRegister] = useState("");
+  const [isRegister, setIsRegister] = useState(false);
 
   const handleRegister = () => {
     setIsRegister((prev) => {

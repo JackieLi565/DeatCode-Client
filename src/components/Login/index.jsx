@@ -1,25 +1,25 @@
 import axios from "axios";
 import { useState } from "react";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
+import CONSTANTS from "../../utils/CONSTANTS";
+
+const { LOGIN_PATH } = CONSTANTS;
 
 function Login({ handleRegister }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const submit = async () => {
-    const req = await axios.post("/api/auth/login", {
-      email,
-      password,
-    });
 
-    if (!req.data.redirectURL) {
-      setError(true);
-      return;
-    }
-
-    navigate(req.data.redirectURL);
-  };
+  const mutation = useMutation({
+    mutationKey: "login",
+    mutationFn: ({ email, password }) => {
+      return axios.post(LOGIN_PATH, { email, password });
+    },
+    onSuccess: () => {
+      navigate("/Home");
+    },
+  });
 
   return (
     <>
@@ -72,7 +72,7 @@ function Login({ handleRegister }) {
                 className="block w-full rounded-md border-0 py-1.5 text-black outline-none sm:text-sm sm:leading-6 p-3"
               />
             </div>
-            {error ? (
+            {mutation.error ? (
               <p className="text-error flex justify-center pt-2">
                 Password or Email is inccorect
               </p>
@@ -83,7 +83,7 @@ function Login({ handleRegister }) {
 
           <div>
             <button
-              onClick={submit}
+              onClick={() => mutation.mutate({ email, password })}
               className="flex w-full justify-center rounded-md bg-button px-3 py-1.5 text-sm font-semibold leading-6 text-headline shadow-sm hover:bg-opacity-70 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Sign in

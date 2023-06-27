@@ -4,9 +4,15 @@ function Navbar() {
   const navigate = useNavigate();
 
   const logout = async () => {
-    const req = await axios.get("/api/auth/logout");
-    navigate(req.data.redirectURL);
+    try {
+      const res = await axios.get("/api/auth/logout");
+      if (res.status === 400) throw new Error("Unable to logout");
+      navigate("/login");
+    } catch (e) {
+      console.log("Logout Error @Navbar");
+    }
   };
+
   return (
     <>
       <nav className="w-full bg-background fixed px-4 py-4 flex justify-between items-center">

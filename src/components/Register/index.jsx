@@ -1,6 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+import CONSTANTS from "../../utils/CONSTANTS";
+
+const { REGISTER_PATH } = CONSTANTS;
+
 function Register({ handleRegister }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -8,18 +13,16 @@ function Register({ handleRegister }) {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  const createUser = async () => {
-    try {
-      const req = await axios.post("/api/auth/register", {
-        email,
-        username,
-        password,
-      });
-      navigate(req.data.redirectURL);
-    } catch {
-      setError(true);
-    }
-  };
+  const mutation = useMutation({
+    mutationKey: "register",
+    mutationFn: ({ email, username, password }) => {
+      return axios.post(REGISTER_PATH, { email, username, password });
+    },
+    onSuccess: () => {
+      setTimeout(() => handleRegister(), 2000);
+    },
+  });
+
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -91,7 +94,7 @@ function Register({ handleRegister }) {
 
           <div>
             <button
-              onClick={createUser}
+              onClick={() => mutation.mutate({ email, username, password })}
               className="flex w-full justify-center rounded-md bg-button px-3 py-1.5 text-sm font-semibold leading-6 text-headline shadow-sm hover:bg-opacity-70 "
             >
               Register
