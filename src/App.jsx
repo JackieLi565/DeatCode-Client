@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import ProblemPage from "./pages/ProblemPage";
 import ProfilePage from "./pages/ProfilePage";
 import { QueryClient, QueryClientProvider } from "react-query";
-import Error from "./pages/Error";
+import Error from "./pages/Completed";
 const queryClient = new QueryClient();
 function App() {
   return (

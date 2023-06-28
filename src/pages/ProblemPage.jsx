@@ -7,7 +7,9 @@ import { useQuery } from "react-query";
 import Loading from "../components/Status/Loading";
 import Success from "../components/Status/Success";
 import { useNavigate } from "react-router-dom";
+import CONSTANTS from "../utils/CONSTANTS";
 
+const { BASE_PROBLEM_PATH } = CONSTANTS;
 function ProblemPage() {
   const [result, setResult] = useState(false);
   const navigate = useNavigate();
@@ -15,10 +17,11 @@ function ProblemPage() {
   const { isLoading, data, isError } = useQuery({
     queryKey: "problem",
     queryFn: async () => {
-      const req = await axios.get("/api/problem/base");
+      const req = await axios.get(BASE_PROBLEM_PATH);
       return req.data;
     },
     retry: 1,
+    refetchOnWindowFocus: false,
   });
 
   if (isError) {
